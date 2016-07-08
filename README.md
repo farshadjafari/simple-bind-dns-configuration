@@ -1,9 +1,18 @@
-#Persian Pdf with weasy-print sample
+#Ubuntu Bind service sample configuration
 
--if you are usin django, and need to write some persian/farsi data to a pdf file, and you need some specific font, you can use this sample to know ho to do it.
+- if you are using ubuntu, and need to set your dns server with bind or bind9, this script is may help you to do it well.
 
-*NOTE that non of other python pdf makers can not print persian stuff. it takes me three days to test each one. so use weasy-print and do not waste your time.
+- change example.com with your domain. and 111.222.333.44 with your server IP.
 
-- first part of code is about rendering some value to a django template and get it as html string.
+- save it on a file at /etc/bind/db.yourdomain.com 
 
-- secont part of code is printing a html page to a pdf, exactly as it appears on web browser.(with whole css rules and font families)
+- add this to /etc/bind/named.conf.local
+
+zone "yourdomain.com" {
+        type master;
+        file "/etc/bind/db.yourdomain.com";
+};
+
+- finally restart bind
+
+* if you are going to have mail server, you should get your domain key and put it on that line, if not, remove it.
